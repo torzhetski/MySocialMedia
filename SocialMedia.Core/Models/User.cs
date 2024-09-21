@@ -4,10 +4,11 @@ namespace SocialMedia.Core.Models
     public class User
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; }
         public string Email { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
+        public string? Avatar { get; set; }
 
         public IList<Post> Posts { get; set; } = new List<Post>();
 

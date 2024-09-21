@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Application.Interfaces;
-using SocialMedia.Core.Models;
 using SocialMedia.DataBase;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +10,5 @@ builder.Services.AddDbContext<IDbContext, SocialMediaDbContext>(options => optio
 #endregion
 
 var app = builder.Build();
-
-app.MapGet("/", () => "Hello World!");
 
 app.Run();
