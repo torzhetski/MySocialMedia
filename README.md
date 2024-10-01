@@ -44,3 +44,4 @@
 - Язык C#
 - Asp.Net Core
 - Enntity Framework
+- MediatR
