@@ -1,13 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Application.Exeptions;
-using SocialMedia.Application.Extentions;
+using SocialMedia.Application.Mappers;
 using SocialMedia.Application.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SocialMedia.Application.CQRS.Users.Queries.GetUserById
 {

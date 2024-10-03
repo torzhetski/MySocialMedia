@@ -28,11 +28,5 @@ namespace SocialMedia.Application.CQRS.Users.Commands.CreateUser
 
             return user.Id;
         }
-
-        //private string HashPassword(string password)
-        //{
-            
-        //    return BCrypt.Net.BCrypt.HashPassword(password);
-        //}
     }
 }

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
       <PrivateAssets>all</PrivateAssets>
@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CQRS\Comments\Commands\" />
+    <Folder Include="CQRS\Comments\Commands\CreateComment\" />
+    <Folder Include="CQRS\Comments\Commands\DeleteComment\" />
+    <Folder Include="CQRS\Comments\Commands\UpdateComment\" />
     <Folder Include="CQRS\Comments\Queries\" />
-    <Folder Include="CQRS\Posts\Commands\" />
-    <Folder Include="CQRS\Posts\Queries\" />
   </ItemGroup>
 
 </Project>

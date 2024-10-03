@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using SocialMedia.Application.Extentions;
+using SocialMedia.Application.Mappers;
 using SocialMedia.Application.Interfaces;
 
 namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
@@ -9,7 +9,7 @@ namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
     {
         private readonly IDbContext _context;
 
-        public GetUsersByUserNameQueryHandler(IDbContext context) 
+        public GetUsersByUserNameQueryHandler(IDbContext context)
         {
             _context = context;
         }
@@ -17,11 +17,13 @@ namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
 
         public async Task<List<UserSummaryDTO>> Handle(GetUsersByUserNameQuery request, CancellationToken cancellationToken)
         {
-           return await _context.Users
-                               .Where(user => user.UserName.Contains(request.UserName))
-                               .Select(user => user.FromUserToSummaryDTO())
-                               .ToListAsync();
-            
+            return await _context.Users
+                                        .Where(user => user.UserName.Contains(request.UserName))
+                                        .Skip((request.PageNumber - 1) * request.PageSize)
+                                        .Take(request.PageSize)
+                                        .Select(user => user.FromUserToSummaryDTO())
+                                        .ToListAsync();
+
         }
     }
 }

@@ -2,9 +2,9 @@
 using SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName;
 using SocialMedia.Core.Models;
 
-namespace SocialMedia.Application.Extentions
+namespace SocialMedia.Application.Mappers
 {
-    public static class UserMapping
+    public static class UserMapper
     {
         public static UserProfileDTO FromUserToProfileDTO(this User user)
         {
