@@ -1,12 +1,14 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Application.DTOs.PostDTOs;
 using SocialMedia.Application.Exeptions;
 using SocialMedia.Application.Interfaces;
+using SocialMedia.Application.Mappers;
 using SocialMedia.Core.Models;
 
 namespace SocialMedia.Application.CQRS.Posts.Queries.GetPostById
 {
-    public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
+    public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, PostDTO>
     {
         private readonly IDbContext _context;
 
@@ -15,7 +17,7 @@ namespace SocialMedia.Application.CQRS.Posts.Queries.GetPostById
             _context = context;
         }
 
-        public async Task<Post> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
+        public async Task<PostDTO> Handle(GetPostByIdQuery request, CancellationToken cancellationToken)
         {
             var post = await _context.Posts
                                      .Include(u => u.Comments)
@@ -26,7 +28,7 @@ namespace SocialMedia.Application.CQRS.Posts.Queries.GetPostById
             {
                 throw new NotFoundException(nameof(post), request.Id);  
             }
-            return post;
+            return post.FromPostToPostDTO();
                                       
         }
     }

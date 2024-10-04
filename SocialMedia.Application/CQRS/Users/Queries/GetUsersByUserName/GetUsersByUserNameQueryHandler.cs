@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SocialMedia.Application.Mappers;
 using SocialMedia.Application.Interfaces;
+using SocialMedia.Application.DTOs.UserDTOs;
 
 namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
 {

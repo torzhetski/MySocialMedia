@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SocialMedia.Application.DTOs.PostDTOs;
 
 namespace SocialMedia.Application.CQRS.Posts.Queries.GetPostsByTitle
 {
@@ -6,6 +7,6 @@ namespace SocialMedia.Application.CQRS.Posts.Queries.GetPostsByTitle
     {
         public string Title { get; set; }
         public int PageSize { get; } = 15;
-        public int PageNumber { get; set; }
+        public int PageNumber { get; set; } = 1;
     }
 }

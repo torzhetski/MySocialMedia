@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
+namespace SocialMedia.Application.DTOs.UserDTOs
 {
     public class UserSummaryDTO
     {

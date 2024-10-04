@@ -1,4 +1,4 @@
-﻿using SocialMedia.Application.CQRS.Posts.Queries;
+﻿using SocialMedia.Application.DTOs.PostDTOs;
 using SocialMedia.Core.Models;
 
 namespace SocialMedia.Application.Mappers
@@ -14,6 +14,20 @@ namespace SocialMedia.Application.Mappers
                 Description = post.Description,
                 UserId = post.UserId,
                 Created = post.Created,
+            };
+        }
+
+        public static PostDTO FromPostToPostDTO(this Post post) 
+        {
+            return new PostDTO
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                Description = post.Description,
+                Created = post.Created,
+                AmountOfLikes = post.AmountOfLikes,
+                User = post.User.FromUserToSummaryDTO(),
             };
         }
     }

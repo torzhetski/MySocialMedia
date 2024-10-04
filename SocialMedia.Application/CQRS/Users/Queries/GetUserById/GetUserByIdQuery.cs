@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SocialMedia.Application.DTOs.UserDTOs;
 
 namespace SocialMedia.Application.CQRS.Users.Queries.GetUserById
 {

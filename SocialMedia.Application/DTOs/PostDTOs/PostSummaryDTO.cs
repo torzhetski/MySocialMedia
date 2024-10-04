@@ -1,6 +1,6 @@
 ﻿using SocialMedia.Core.Models;
 
-namespace SocialMedia.Application.CQRS.Posts.Queries
+namespace SocialMedia.Application.DTOs.PostDTOs
 {
     public class PostSummaryDTO
     {

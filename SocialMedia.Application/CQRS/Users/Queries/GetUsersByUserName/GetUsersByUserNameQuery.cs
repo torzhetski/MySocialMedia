@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SocialMedia.Application.DTOs.UserDTOs;
 
 namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
 {
@@ -6,6 +7,6 @@ namespace SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName
     {
         public string? UserName { get; set; }
         public int PageSize { get; } = 15;
-        public int PageNumber { get; set; }
+        public int PageNumber { get; set; } = 1;
     }
 }

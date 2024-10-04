@@ -2,10 +2,10 @@
 using SocialMedia.Application.CQRS.Posts.Commands.CreatePost;
 using SocialMedia.Application.CQRS.Posts.Commands.DeletePost;
 using SocialMedia.Application.CQRS.Posts.Commands.UpdatePost;
-using SocialMedia.Application.CQRS.Posts.Queries;
 using SocialMedia.Application.CQRS.Posts.Queries.GetPostById;
 using SocialMedia.Application.CQRS.Posts.Queries.GetPostsByTitle;
 using SocialMedia.Application.CQRS.Posts.Queries.GetRecentPosts;
+using SocialMedia.Application.DTOs.PostDTOs;
 using SocialMedia.Core.Models;
 
 namespace MySocialMedia.Controllers
@@ -13,7 +13,7 @@ namespace MySocialMedia.Controllers
     [Route("api/[controller]")]
     public class PostController : BaseController
     {
-        [HttpGet("{id}")]
+        [HttpGet("post/{id}")]
         public async Task<ActionResult<Post>> GetById([FromRoute] int id)
         {
             var query = new GetPostByIdQuery
@@ -21,14 +21,14 @@ namespace MySocialMedia.Controllers
                 Id = id
             };
             var post = await Mediator.Send(query);
-            if (post != null) 
+            if (post == null) 
             {
                 return NotFound();
             }
             return Ok(post);
         }
 
-        [HttpGet("{title}/{pageNumber}")]
+        [HttpGet("posts/{title}/{pageNumber}")]
         public async Task<ActionResult<List<PostSummaryDTO>>> GetByTitle([FromRoute] string title, [FromRoute] int pageNumber)
         {
             var query = new GetPostsByTitleQuery
@@ -40,7 +40,7 @@ namespace MySocialMedia.Controllers
             return Ok(posts);
         }
 
-        [HttpGet("{pageNumber}")]
+        [HttpGet("posts/{pageNumber}")]
         public async Task<ActionResult<List<PostSummaryDTO>>> GetRecent([FromRoute] int pageNumber)
         {
             var query = new GetRecentPostsQuery
@@ -84,6 +84,8 @@ namespace MySocialMedia.Controllers
             };
             await Mediator.Send(command);
             return NoContent();
+
+            
         }
     }
 

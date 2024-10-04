@@ -19,6 +19,7 @@ namespace SocialMedia.Application.CQRS.Posts.Commands.CreatePost
             {
                 Title = request.Title,
                 Content = request.Content,
+                Description = request.Description ?? "",
                 UserId = request.UserId,
             };
 

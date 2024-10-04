@@ -3,13 +3,14 @@ using SocialMedia.Application.CQRS.Users.Commands.CreateUser;
 using SocialMedia.Application.CQRS.Users.Commands.UpdateUser;
 using SocialMedia.Application.CQRS.Users.Queries.GetUserById;
 using SocialMedia.Application.CQRS.Users.Queries.GetUsersByUserName;
+using SocialMedia.Application.DTOs.UserDTOs;
 
 namespace MySocialMedia.Controllers
 {
     [Route("api/[controller]")]
     public class UserController : BaseController
     {
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public async Task<ActionResult<UserProfileDTO>> GetById([FromRoute] int id)
         {
             var query = new GetUserByIdQuery
@@ -25,11 +26,12 @@ namespace MySocialMedia.Controllers
             return Ok(profile);
         }
 
-        [HttpGet("{username}")]
-        public async Task<ActionResult<List<UserSummaryDTO>>> Find([FromRoute] string username)
+        [HttpGet("users/{username}/{pageNumber}")]
+        public async Task<ActionResult<List<UserSummaryDTO>>> Find([FromRoute] string username, [FromRoute] int pageNumber)
         {
             var query = new GetUsersByUserNameQuery
             {
+                PageNumber = pageNumber,
                 UserName = username
             };
             var list = await Mediator.Send(query);

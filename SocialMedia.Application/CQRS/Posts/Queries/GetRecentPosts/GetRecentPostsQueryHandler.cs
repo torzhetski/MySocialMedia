@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using SocialMedia.Application.DTOs.PostDTOs;
 using SocialMedia.Application.Interfaces;
 using SocialMedia.Application.Mappers;
 
