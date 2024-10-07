@@ -1,8 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using SocialMedia.Application.CQRS.Users.Commands.CreateUser;
+using Microsoft.IdentityModel.Tokens;
+using SocialMedia.Application;
+using SocialMedia.Application.CQRS.Users.Commands.RegisterUser;
 using SocialMedia.Application.Interfaces;
 using SocialMedia.DataBase;
 using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,13 +19,35 @@ builder.Services.AddDbContext<IDbContext, SocialMediaDbContext>(options => optio
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-    cfg.RegisterServicesFromAssembly(typeof(CreateUserCommandHandler).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly);
 });
 #endregion
 
+#region Authentication && Authorization
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                                   .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                                   {
+                                       options.TokenValidationParameters = new()
+                                       {
+                                           ValidateIssuer = false,
+                                           ValidateAudience = false,
+                                           ValidateLifetime = true,
+                                           ValidateIssuerSigningKey = true,
+                                           IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration.GetValue<string>("JWTOptions:SecretKey")))
+                                       };
+                                   });
+builder.Services.AddAuthorization();
+#endregion
+
+builder.Services.AddScoped<IPasswordHasher,PasswordHasher>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 

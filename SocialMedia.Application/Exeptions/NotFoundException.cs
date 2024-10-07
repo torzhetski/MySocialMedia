@@ -1,5 +1,4 @@
-﻿
-namespace SocialMedia.Application.Exeptions
+﻿namespace SocialMedia.Application.Exeptions
 {
     public class NotFoundException : Exception
     {

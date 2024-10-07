@@ -13,7 +13,7 @@ namespace SocialMedia.Application.Mappers
                 UserName = user.UserName,
                 Name = user.Name,
                 Avatar = user.Avatar,
-                Posts = user.Posts.Select(post => post.FromPostToSummaryDTO()).ToList(),
+                //Posts = user.Posts.Select(post => post.FromPostToSummaryDTO()).ToList(),
                 LikedPosts = user.LikedPosts.Select(postlike => postlike.FromPostLikeToDTO()).ToList(),
             };
             

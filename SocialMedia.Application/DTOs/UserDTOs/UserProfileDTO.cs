@@ -10,7 +10,7 @@ namespace SocialMedia.Application.DTOs.UserDTOs
         public string Name { get; set; }
         public string? Avatar { get; set; }
 
-        public IList<PostSummaryDTO> Posts { get; set; }
+        //public IList<PostSummaryDTO> Posts { get; set; }
 
         public IList<PostLikeDTO> LikedPosts { get; set; }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SocialMedia.Application.CQRS.Posts.Commands.CreatePost;
 using SocialMedia.Application.CQRS.Posts.Commands.DeletePost;
 using SocialMedia.Application.CQRS.Posts.Commands.UpdatePost;
@@ -52,6 +53,7 @@ namespace MySocialMedia.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Create([FromBody] CreatePostCommand command)
         {
             var PostId = await Mediator.Send(command);
@@ -63,6 +65,7 @@ namespace MySocialMedia.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<ActionResult> Update ([FromRoute] int id, [FromBody] UpdatePostCommand command)
         {
             command.Id = id;
@@ -75,6 +78,7 @@ namespace MySocialMedia.Controllers
         }
 
         [HttpDelete("{userId}/{id}")]
+        [Authorize]
         public async Task<ActionResult> Delete([FromRoute] int userId,[FromRoute] int id) 
         {
             var command = new DeletePostCommand 

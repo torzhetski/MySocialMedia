@@ -27,7 +27,8 @@ namespace SocialMedia.DataBase
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new PostLikeConfiguration());
+            modelBuilder.ApplyConfiguration(new PostLikeConfiguration()); 
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
