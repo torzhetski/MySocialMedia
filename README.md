@@ -45,3 +45,4 @@
 - Asp.Net Core
 - Enntity Framework
 - MediatR
+- Паттерны CQRS и MVC
